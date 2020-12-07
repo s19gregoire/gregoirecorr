@@ -6,7 +6,7 @@
 /*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 02:35:15 by gneve             #+#    #+#             */
-/*   Updated: 2020/11/22 03:59:56 by gneve            ###   ########.fr       */
+/*   Updated: 2020/12/07 11:13:28 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,19 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	unsigned int	count;
+	size_t	count;
 
-	if (size == 0)
-		return (ft_strlen(src));
+	if (!src)
+		return (0);
 	count = 0;
-	while (size > 1 && *src)
+	if (size > 0)
 	{
-		*dest = *src;
-		++dest;
-		++src;
-		--size;
-		++count;
-	}
-	*dest = '\0';
-	while (*dest || *src)
-	{
-		if (*src)
+		while (src[count] && count + 1 < size)
 		{
-			++src;
-			++count;
+			dest[count] = src[count];
+			count++;
 		}
+		dest[count] = '\0';
 	}
-	return (count);
+	return (ft_strlen(src));
 }
